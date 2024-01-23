@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx lint-staged || (
+  echo '❌ Commit aborted. Fix the erros above and try again';
+  false;
+)
+
+echo '✅ All checks were successful! Committing 🚀'
