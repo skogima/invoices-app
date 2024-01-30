@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     fontSize: {
       "body-variant": [
@@ -47,6 +48,15 @@ export default {
     fontFamily: {
       sans: ["League Spartan", "sans-serif"],
     },
+    borderRadius: {
+      none: "0px",
+      xs: "4px",
+      sm: "6px",
+      DEFAULT: "8px",
+      lg: "20px",
+      xl: "24px",
+      full: "9999px",
+    },
     colors: {
       white: "#FFFFFF",
       black: "#000000",
@@ -60,10 +70,13 @@ export default {
         DEFAULT: "#7C5DFA",
         light: "#9277FF",
       },
+      "blue-gray": {
+        300: "#7E88C3",
+        400: "#888EB0",
+      },
       gray: {
         50: "#F8F8FB",
         200: "#DFE3FA",
-        400: "#888EB0",
         600: "#373B53",
         700: "#252945",
         800: "#1E2139",
