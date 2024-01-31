@@ -44,6 +44,14 @@ export default {
           fontWeight: "bold",
         },
       ],
+      "heading-l": [
+        "36px",
+        {
+          lineHeight: "33px",
+          letterSpacing: "-1px",
+          fontWeight: "bold",
+        },
+      ],
     },
     fontFamily: {
       sans: ["League Spartan", "sans-serif"],
@@ -75,7 +83,8 @@ export default {
         400: "#888EB0",
       },
       gray: {
-        50: "#F8F8FB",
+        50: "#F9FAFE",
+        100: "#F8F8FB",
         200: "#DFE3FA",
         600: "#373B53",
         700: "#252945",
