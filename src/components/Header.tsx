@@ -8,7 +8,7 @@ export function Header() {
   const { isDark, toggleDarkTheme } = useDarkMode();
 
   return (
-    <header className="sticky top-0 z-20 flex h-20 w-screen justify-between overflow-hidden bg-gray-600 dark:bg-gray-800 lg:h-screen lg:w-[103px] lg:flex-col lg:rounded-r-lg">
+    <header className="sticky top-0 z-20 flex h-20 w-screen shrink-0 justify-between overflow-hidden bg-gray-600 dark:bg-gray-800 lg:h-screen lg:w-[103px] lg:flex-col lg:rounded-r-lg">
       <Link to="/">
         <div className="group relative flex h-full w-20 overflow-hidden rounded-r-lg bg-violet lg:h-24 lg:w-full">
           <img src={logo} alt="branding logo" role="presentation" className="z-10 m-auto " />
