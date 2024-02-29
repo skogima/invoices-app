@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 import "./index.css";
+import { InvoiceProvider } from "./context/InvoiceContext";
 
 const setting = localStorage.getItem("is-dark-mode");
 
@@ -15,6 +16,8 @@ if (!setting) {
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <InvoiceProvider>
+      <RouterProvider router={router} />
+    </InvoiceProvider>
   </React.StrictMode>,
 );
