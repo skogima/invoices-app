@@ -15,7 +15,7 @@ export function InvoiceListItem({ invoice }: Readonly<Props>) {
   return (
     <Link
       to={`/invoice/${invoice.id}`}
-      className={`${colsClasses} mb-4 grid items-center rounded border border-white bg-white px-6 py-4 text-body text-gray-950 transition-[border-color] duration-300 hover:border-violet motion-reduce:transition-none dark:border-gray-800 dark:bg-gray-800 dark:text-white dark:hover:border-violet`}
+      className={`${colsClasses} mb-4 grid items-center rounded border border-white bg-white px-6 py-4 text-body text-gray-950 shadow-card transition-[border-color] duration-300 hover:border-violet motion-reduce:transition-none dark:border-gray-800 dark:bg-gray-800 dark:text-white dark:hover:border-violet`}
     >
       <h6 className="text-heading-s-variant font-bold">
         <span className="text-blue-gray-300">#</span>

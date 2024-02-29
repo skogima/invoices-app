@@ -96,6 +96,19 @@ export default {
     dropShadow: {
       menu: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     },
+    boxShadow: {
+      card: "0px 10px 10px -10px #48549F0A",
+    },
+    extend: {
+      keyframes: {
+        "fade-in": {
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 400ms ease-in forwards",
+      },
+    },
   },
   plugins: [],
 };
