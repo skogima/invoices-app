@@ -9,7 +9,7 @@ export default {
         {
           lineHeight: "15px",
           letterSpacing: "-0.25px",
-          fontWeight: "medium",
+          fontWeight: "500",
         },
       ],
       body: [
@@ -17,7 +17,7 @@ export default {
         {
           lineHeight: "18px",
           letterSpacing: "-0.1px",
-          fontWeight: "medium",
+          fontWeight: "500",
         },
       ],
       "heading-s": [
@@ -25,7 +25,7 @@ export default {
         {
           lineHeight: "24px",
           letterSpacing: "-0.25px",
-          fontWeight: "bold",
+          fontWeight: "700",
         },
       ],
       "heading-s-variant": [
@@ -33,7 +33,7 @@ export default {
         {
           lineHeight: "15px",
           letterSpacing: "-0.25px",
-          fontWeight: "bold",
+          fontWeight: "700",
         },
       ],
       "heading-m": [
@@ -41,7 +41,7 @@ export default {
         {
           lineHeight: "22px",
           letterSpacing: "-0.75px",
-          fontWeight: "bold",
+          fontWeight: "700",
         },
       ],
       "heading-l": [
@@ -49,7 +49,7 @@ export default {
         {
           lineHeight: "33px",
           letterSpacing: "-1px",
-          fontWeight: "bold",
+          fontWeight: "700",
         },
       ],
     },
