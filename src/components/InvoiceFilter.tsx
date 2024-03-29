@@ -28,7 +28,9 @@ export function InvoiceFilter({ handleStatusSelected, status }: Readonly<Props>)
   return (
     <div className="relative text-heading-s-variant text-gray-900 dark:text-white" ref={filterMenu}>
       <button className="flex items-center space-x-4 font-bold" onClick={() => setIsOpen(!isOpen)}>
-        <span>Filter by status</span>
+        <span>
+          Filter <span className="hidden sm:inline">by status</span>
+        </span>
         <img
           src={arrowDown}
           role="presentation"
