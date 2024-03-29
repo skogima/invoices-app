@@ -23,6 +23,8 @@ type InvoiceStore = {
   dispatch: React.Dispatch<InvoiceAction>;
   statusFilter: InvoiceStatus | null;
   setStatusFilter: (value: InvoiceStatus | null) => void;
+  invoiceToEdit: Invoice | null;
+  setInvoiceToEdit: (value: Invoice | null) => void;
 };
 
 const InvoiceContext = createContext<InvoiceStore>({} as InvoiceStore);
@@ -55,6 +57,7 @@ export function useInvoices() {
 export function InvoiceProvider({ children }: PropsWithChildren<object>) {
   const { readValue, store } = useLocalStorage<Invoice[] | null>("invoices", null);
   const [invoices, dispatch] = useReducer(invoicesReducer, []);
+  const [invoiceToEdit, setInvoiceToEdit] = useState<Invoice | null>(null);
   const [statusFilter, setStatusFilter] = useState<InvoiceStatus | null>(null);
 
   useEffect(() => {
@@ -78,6 +81,8 @@ export function InvoiceProvider({ children }: PropsWithChildren<object>) {
       dispatch,
       statusFilter,
       setStatusFilter,
+      invoiceToEdit,
+      setInvoiceToEdit,
     }),
     [invoices, statusFilter],
   );
