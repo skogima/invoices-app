@@ -5,3 +5,4 @@ export * from "./InvoiceFilter";
 export * from "./InvoiceList";
 export * from "./InvoiceListItem";
 export * from "./InvoiceStatusTag";
+export * from "./DeleteDialog";

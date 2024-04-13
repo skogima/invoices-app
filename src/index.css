@@ -18,4 +18,8 @@ body,
       transition: none;
     }
   }
+
+  dialog::backdrop {
+    @apply bg-black/50;
+  }
 }
