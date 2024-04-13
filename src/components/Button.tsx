@@ -17,9 +17,9 @@ export function Button(props: Props) {
   return (
     <button
       {...props}
-      className={`text-sm flex h-12 items-center rounded-full px-6 font-bold ${
+      className={`flex h-12 items-center rounded-full px-6 font-bold ${
         colorVariant[props.variant]
-      } ${props.className}`}
+      } ${props.className || ""}`}
     >
       {props.children}
     </button>

@@ -1,15 +1,35 @@
-import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import arrowLeft from "@/assets/icon-arrow-left.svg";
-import { Button, InvoiceStatusTag } from "@/components";
+import { Button, InvoiceStatusTag, DeleteDialog } from "@/components";
 import { useInvoices } from "@/context/InvoiceContext";
 import { formatToDollar } from "@/utils/currencyFormatter";
+import type { Invoice } from "@/types";
 
 export function Invoice() {
-  const { invoices } = useInvoices();
+  const { invoices, dispatch, setInvoiceToEdit } = useInvoices();
+  const navigate = useNavigate();
+
+  const [showDelete, setShowDelete] = useState(false);
 
   const params = useParams<{ id: string }>();
 
   const invoice = invoices.find((invoice) => invoice.id == params.id);
+
+  function deleteInvoice(_invoice: Invoice) {
+    dispatch({
+      type: "delete",
+      payload: _invoice,
+    });
+    navigate("/");
+  }
+
+  function markAsPaid(_invoice: Invoice) {
+    dispatch({
+      type: "update",
+      payload: { ..._invoice, status: "paid" },
+    });
+  }
 
   return (
     <section className="mt-8 w-full text-body-variant text-blue-gray-300 dark:text-gray-200 sm:mt-16">
@@ -24,14 +44,30 @@ export function Invoice() {
 
         {!!invoice && (
           <>
+            {showDelete && (
+              <DeleteDialog
+                invoiceId={invoice.id}
+                onCancel={() => setShowDelete(false)}
+                onConfirm={() => deleteInvoice(invoice)}
+              />
+            )}
+
             <div className="mt-8 flex items-center justify-between rounded bg-white px-6 py-5 shadow-card dark:bg-gray-800 sm:justify-start sm:px-8">
               <span className="mr-5">Status</span>
               <InvoiceStatusTag status={invoice.status} />
 
               <div className="ml-auto hidden items-center gap-x-2 sm:flex">
-                <Button variant="secondary">Edit</Button>
-                <Button variant="danger">Delete</Button>
-                {invoice.status == "pending" && <Button variant="primary">Mark as Paid</Button>}
+                <Button variant="secondary" onClick={() => setInvoiceToEdit(invoice)}>
+                  Edit
+                </Button>
+                <Button variant="danger" onClick={() => setShowDelete(true)}>
+                  Delete
+                </Button>
+                {invoice.status == "pending" && (
+                  <Button variant="primary" onClick={() => markAsPaid(invoice)}>
+                    Mark as Paid
+                  </Button>
+                )}
               </div>
             </div>
 
@@ -92,7 +128,7 @@ export function Invoice() {
               </div>
 
               <div className="mt-11 w-full overflow-hidden rounded bg-gray-50 dark:bg-gray-700">
-                <table className="w-full table-fixed border-collapse border-spacing-0 sm:table-auto">
+                <table className="w-full table-fixed border-collapse border-spacing-0 md:table-auto">
                   <thead className="hidden text-body text-blue-gray-300 dark:text-gray-200 sm:table-header-group">
                     <tr>
                       <th scope="col" className="p-6 pb-0 text-left font-medium sm:p-8">
@@ -116,19 +152,23 @@ export function Invoice() {
                         key={i}
                         className="text-heading-s-variant font-bold text-gray-950 dark:text-white"
                       >
-                        <td className="text-nowrap p-6 text-left sm:p-8">
+                        <td
+                          className={`text-nowrap p-6 ${i > 0 ? "pt-0" : ""} text-left sm:p-8 sm:pt-0`}
+                        >
                           <span className="mb-2 block">{product.name}</span>
                           <span className="block text-blue-gray-400 sm:hidden">
                             {product.quantity + " x " + formatToDollar(product.price)}
                           </span>
                         </td>
-                        <td className="hidden p-6 text-center text-blue-gray-300 dark:text-gray-200 sm:table-cell sm:p-8">
+                        <td className="hidden p-8 pt-0 text-center text-blue-gray-300 dark:text-gray-200 sm:table-cell">
                           {product.quantity}
                         </td>
-                        <td className="hidden p-6 text-right text-blue-gray-300 dark:text-gray-200 sm:table-cell sm:p-8">
+                        <td className="hidden p-8 pt-0 text-right text-blue-gray-300 dark:text-gray-200 sm:table-cell">
                           {formatToDollar(product.price)}
                         </td>
-                        <td className="p-6 text-right sm:p-8">{formatToDollar(product.total)}</td>
+                        <td className={`p-6 text-right ${i > 0 ? "pt-0" : ""} sm:p-8 sm:pt-0`}>
+                          {formatToDollar(product.total)}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -152,9 +192,17 @@ export function Invoice() {
 
       {!!invoice && (
         <div className="mt-14 flex w-full items-center justify-end gap-x-2 bg-white p-6 shadow-card dark:bg-gray-800 sm:hidden">
-          <Button variant="secondary">Edit</Button>
-          <Button variant="danger">Delete</Button>
-          {invoice.status == "pending" && <Button variant="primary">Mark as Paid</Button>}
+          <Button variant="secondary" onClick={() => setInvoiceToEdit(invoice)}>
+            Edit
+          </Button>
+          <Button variant="danger" onClick={() => setShowDelete(true)}>
+            Delete
+          </Button>
+          {invoice.status == "pending" && (
+            <Button variant="primary" onClick={() => markAsPaid(invoice)}>
+              Mark as Paid
+            </Button>
+          )}
         </div>
       )}
     </section>
