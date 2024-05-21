@@ -4,9 +4,9 @@ import {
   createContext,
   useContext,
   useState,
-  useMemo,
   useReducer,
   useEffect,
+  useMemo,
 } from "react";
 import { Invoice, InvoiceStatus } from "@/types";
 import { useLocalStorage } from "@/hooks";
@@ -25,6 +25,8 @@ type InvoiceStore = {
   setStatusFilter: (value: InvoiceStatus | null) => void;
   invoiceToEdit: Invoice | null;
   setInvoiceToEdit: (value: Invoice | null) => void;
+  isFormOpen: boolean;
+  setIsFormOpen: (value: boolean) => void;
 };
 
 const InvoiceContext = createContext<InvoiceStore>({} as InvoiceStore);
@@ -59,6 +61,7 @@ export function InvoiceProvider({ children }: PropsWithChildren<object>) {
   const [invoices, dispatch] = useReducer(invoicesReducer, []);
   const [invoiceToEdit, setInvoiceToEdit] = useState<Invoice | null>(null);
   const [statusFilter, setStatusFilter] = useState<InvoiceStatus | null>(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     let storedInvoices = readValue();
@@ -83,8 +86,10 @@ export function InvoiceProvider({ children }: PropsWithChildren<object>) {
       setStatusFilter,
       invoiceToEdit,
       setInvoiceToEdit,
+      isFormOpen,
+      setIsFormOpen,
     }),
-    [invoices, statusFilter],
+    [invoices, statusFilter, invoiceToEdit, isFormOpen],
   );
 
   return <InvoiceContext.Provider value={invoiceProviderValue}>{children}</InvoiceContext.Provider>;
