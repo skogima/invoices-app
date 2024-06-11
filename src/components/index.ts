@@ -6,3 +6,4 @@ export * from "./InvoiceList";
 export * from "./InvoiceListItem";
 export * from "./InvoiceStatusTag";
 export * from "./DeleteDialog";
+export * from "./Input";
