@@ -3,8 +3,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import arrowLeft from "@/assets/icon-arrow-left.svg";
 import { Button, InvoiceStatusTag, DeleteDialog } from "@/components";
 import { useInvoices } from "@/context/InvoiceContext";
-import { formatToDollar } from "@/utils/currencyFormatter";
 import type { Invoice } from "@/types";
+import { formatToDollar, formatDate } from "@/utils";
 
 export function Invoice() {
   const { invoices, dispatch, setInvoiceToEdit } = useInvoices();
@@ -95,13 +95,13 @@ export function Invoice() {
                   <div>
                     <h6 className="mb-3 text-blue-gray-300 dark:text-gray-200">Invoice Date</h6>
                     <span className="text-heading-s font-bold text-gray-950 dark:text-white">
-                      21 Aug 2021
+                      {formatDate(new Date(invoice.createdAt))}
                     </span>
                   </div>
                   <div>
                     <h6 className="mb-3 text-blue-gray-300 dark:text-gray-200">Payment Due</h6>
                     <span className="text-heading-s font-bold text-gray-950 dark:text-white">
-                      20 Sep 2021
+                      {formatDate(new Date(invoice.paymentDue))}
                     </span>
                   </div>
                 </div>
