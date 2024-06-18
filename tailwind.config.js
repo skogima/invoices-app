@@ -20,6 +20,14 @@ export default {
           fontWeight: "500",
         },
       ],
+      "body-l": [
+        "18px",
+        {
+          lineHeight: "32px",
+          letterSpacing: "-0.38px",
+          fontWeight: "700",
+        },
+      ],
       "heading-s": [
         "15px",
         {
@@ -86,6 +94,7 @@ export default {
         50: "#F9FAFE",
         100: "#F8F8FB",
         200: "#DFE3FA",
+        400: "#777F98",
         600: "#373B53",
         700: "#252945",
         800: "#1E2139",
@@ -95,6 +104,8 @@ export default {
     },
     dropShadow: {
       menu: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      "select-dark": "0px 10px 20px rgba(0, 0, 0, 0.25)",
+      select: "0px 10px 20px #48549F19",
     },
     boxShadow: {
       card: "0px 10px 10px -10px #48549F0A",
