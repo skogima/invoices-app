@@ -1,7 +1,7 @@
 import { Button, InvoiceFilter, InvoiceList } from "@/components";
 import plusIcon from "@/assets/icon-plus.svg";
 import { useInvoices } from "@/context/InvoiceContext";
-import { getFilteredInvoices } from "@/utils";
+import { getFilteredInvoices, getInvoiceLengthMessage } from "@/utils";
 
 export function Home() {
   const { invoices, statusFilter, setStatusFilter, setIsFormOpen } = useInvoices();
@@ -15,7 +15,13 @@ export function Home() {
           <h1 className="text-heading-m text-gray-950 dark:text-white sm:text-heading-l">
             Invoices
           </h1>
-          <h4 className="mt-1.5 text-body text-blue-gray-400 dark:text-gray-200">No invoices</h4>
+
+          <h4 className="mt-1.5 hidden text-body text-blue-gray-400 dark:text-gray-200 sm:block">
+            {getInvoiceLengthMessage(filteredInvoices, statusFilter, "full")}
+          </h4>
+          <h4 className="mt-1.5 block text-body text-blue-gray-400 dark:text-gray-200 sm:hidden">
+            {getInvoiceLengthMessage(filteredInvoices, statusFilter, "short")}
+          </h4>
         </div>
 
         <div className="flex items-center gap-x-5 sm:gap-x-10">
