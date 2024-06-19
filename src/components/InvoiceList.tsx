@@ -1,12 +1,14 @@
+import { Invoice } from "@/types";
 import { InvoiceListItem } from "./InvoiceListItem";
 import emptyIllustration from "@/assets/illustration-empty.svg";
-import { useInvoices } from "@/context/InvoiceContext";
 
 const ANIMATION_INTERVAL = 100;
 
-export function InvoiceList() {
-  const { invoices } = useInvoices();
+type Props = {
+  invoices: Invoice[];
+};
 
+export function InvoiceList({ invoices }: Readonly<Props>) {
   return (
     <>
       {!!invoices.length && (

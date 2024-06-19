@@ -1,9 +1,12 @@
 import { Button, InvoiceFilter, InvoiceList } from "@/components";
 import plusIcon from "@/assets/icon-plus.svg";
 import { useInvoices } from "@/context/InvoiceContext";
+import { getFilteredInvoices } from "@/utils";
 
 export function Home() {
-  const { statusFilter, setStatusFilter, setIsFormOpen } = useInvoices();
+  const { invoices, statusFilter, setStatusFilter, setIsFormOpen } = useInvoices();
+
+  const filteredInvoices = getFilteredInvoices(invoices, statusFilter);
 
   return (
     <div className="mx-6 mt-20 flex w-full max-w-3xl flex-col">
@@ -28,7 +31,7 @@ export function Home() {
         </div>
       </div>
 
-      <InvoiceList />
+      <InvoiceList invoices={filteredInvoices} />
     </div>
   );
 }
