@@ -7,10 +7,11 @@ import {
   useReducer,
   useEffect,
   useMemo,
+  useRef,
 } from "react";
 import { Invoice, InvoiceStatus } from "@/types";
 import { useLocalStorage } from "@/hooks";
-import data from "@/const/data.json";
+import fakeInvoices from "@/const/data.json";
 import { invoicesReducer, InvoiceAction } from "./invoiceReducer";
 
 type InvoiceStore = {
@@ -37,13 +38,13 @@ export function InvoiceProvider({ children }: PropsWithChildren<object>) {
   const [statusFilter, setStatusFilter] = useState<InvoiceStatus | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
     let storedInvoices = readValue();
 
     if (!storedInvoices) {
-      storedInvoices = data as Invoice[];
-
-      store(storedInvoices);
+      storedInvoices = fakeInvoices as Invoice[];
     }
 
     dispatch({
@@ -51,6 +52,16 @@ export function InvoiceProvider({ children }: PropsWithChildren<object>) {
       payload: storedInvoices,
     });
   }, []);
+
+  useEffect(() => {
+    if (!isFirstRender.current) {
+      store(invoices);
+    }
+
+    return () => {
+      isFirstRender.current = false;
+    };
+  }, [invoices]);
 
   const invoiceProviderValue = useMemo(
     () => ({
