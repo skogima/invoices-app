@@ -115,9 +115,14 @@ export default {
         "fade-in": {
           "100%": { opacity: 1 },
         },
+        "slide-in": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
       },
       animation: {
         "fade-in": "fade-in 400ms ease-in forwards",
+        "slide-in": "slide-in 200ms ease-in forwards",
       },
     },
   },
