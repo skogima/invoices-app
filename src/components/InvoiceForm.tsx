@@ -118,7 +118,7 @@ export function InvoiceForm({ closeForm }: Readonly<{ closeForm: () => void }>) 
 
   return (
     <form className="flex h-full flex-col text-body" onSubmit={handleFormSubmit}>
-      <div className=" h-full overflow-hidden p-0 sm:p-6">
+      <div className="h-full overflow-hidden p-0 sm:p-6 sm:pb-0">
         <div className="custom-scroll flex h-full flex-col gap-6 overflow-y-scroll p-6 sm:p-8">
           <h1 className="text-heading-m font-bold dark:text-white">
             {!invoiceToEdit ? (
@@ -275,7 +275,7 @@ export function InvoiceForm({ closeForm }: Readonly<{ closeForm: () => void }>) 
         </div>
       </div>
 
-      <div className="pointer-events-none absolute bottom-0 left-0 h-16 w-full -translate-y-full bg-gradient-to-b from-black/0 to-black/10"></div>
+      <div className="pointer-events-none absolute bottom-0 left-0 h-16 w-full -translate-y-full bg-gradient-to-b from-black/0 to-black/10 dark:to-black/50"></div>
       <div className="z-10 flex w-full items-center gap-x-2 rounded-lg bg-white p-6 dark:bg-gray-900 sm:px-16">
         <Button
           variant="secondary"
@@ -298,7 +298,7 @@ export function InvoiceForm({ closeForm }: Readonly<{ closeForm: () => void }>) 
         )}
 
         <Button variant="primary" type="submit" className="text-nowrap px-5" value="pending">
-          Save & Send
+          {isEditing ? "Save Changes" : "Save & Send"}
         </Button>
       </div>
     </form>
