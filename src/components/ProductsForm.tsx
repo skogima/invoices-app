@@ -141,12 +141,12 @@ export function ProductsForm({ control, errors, register, setValue }: Readonly<P
           <div className="group flex h-[48px] w-[24px] items-center self-end">
             <button
               type="button"
-              className="h-[24px] w-[24px] rounded-full p-1 disabled:pointer-events-none disabled:opacity-50"
+              className="h-[24px] w-[24px] rounded-full bg-blue-gray-400 p-1 hover:bg-red disabled:pointer-events-none disabled:opacity-50"
+              style={{ mask: `url(${deleteIcon}) center no-repeat` }}
+              aria-label="delete"
               disabled={productFields.length == 1}
               onClick={() => handleRemoveProduct(i)}
-            >
-              <img className="m-auto max-w-full" src={deleteIcon} alt="trash can" />
-            </button>
+            />
           </div>
         </div>
       ))}
