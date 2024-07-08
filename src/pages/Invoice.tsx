@@ -4,7 +4,7 @@ import arrowLeft from "@/assets/icon-arrow-left.svg";
 import { Button, InvoiceStatusTag, DeleteDialog } from "@/components";
 import { useInvoices } from "@/context/InvoiceContext";
 import type { Invoice } from "@/types";
-import { formatToDollar, formatDate } from "@/utils";
+import { formatToUSD, formatDate } from "@/utils";
 
 export function Invoice() {
   const { invoices, dispatch, setInvoiceToEdit } = useInvoices();
@@ -157,17 +157,17 @@ export function Invoice() {
                         >
                           <span className="mb-2 block">{product.name}</span>
                           <span className="block text-blue-gray-400 sm:hidden">
-                            {product.quantity + " x " + formatToDollar(product.price)}
+                            {product.quantity + " x " + formatToUSD(product.price)}
                           </span>
                         </td>
                         <td className="hidden p-8 pt-0 text-center text-blue-gray-300 dark:text-gray-200 sm:table-cell">
                           {product.quantity}
                         </td>
                         <td className="hidden p-8 pt-0 text-right text-blue-gray-300 dark:text-gray-200 sm:table-cell">
-                          {formatToDollar(product.price)}
+                          {formatToUSD(product.price)}
                         </td>
                         <td className={`p-6 text-right ${i > 0 ? "pt-0" : ""} sm:p-8 sm:pt-0`}>
-                          {formatToDollar(product.total)}
+                          {formatToUSD(product.total)}
                         </td>
                       </tr>
                     ))}
@@ -179,7 +179,7 @@ export function Invoice() {
                       <th className="hidden sm:table-cell"></th>
                       <th className="hidden sm:table-cell"></th>
                       <th className="p-6 pl-2 text-right text-heading-m tracking-[-0.5px] sm:p-8">
-                        {formatToDollar(invoice.total)}
+                        {formatToUSD(invoice.total)}
                       </th>
                     </tr>
                   </tfoot>

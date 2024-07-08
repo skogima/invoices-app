@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Invoice } from "@/types";
 import { InvoiceStatusTag } from "./InvoiceStatusTag";
-import { formatToDollar, formatDate } from "@/utils";
+import { formatToUSD, formatDate } from "@/utils";
 import arrowRight from "@/assets/icon-arrow-right.svg";
 
 type Props = {
@@ -32,7 +32,7 @@ export function InvoiceListItem({ invoice }: Readonly<Props>) {
       </span>
 
       <span className="col-start-1 justify-self-start text-right text-heading-s font-bold md:col-start-4 md:mr-10">
-        {formatToDollar(invoice.total)}
+        {formatToUSD(invoice.total)}
       </span>
 
       <div className="col-start-2 row-span-2 row-start-2 justify-self-end md:col-start-5 md:row-span-1 md:justify-self-start">

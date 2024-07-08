@@ -8,7 +8,7 @@ import {
   useWatch,
 } from "react-hook-form";
 import { CreateInvoiceSchema } from "@/const";
-import { formatToDollar, generateUUID } from "@/utils";
+import { formatToUSD, generateUUID } from "@/utils";
 import { Button, Input } from ".";
 import deleteIcon from "@/assets/icon-delete.svg";
 
@@ -134,7 +134,7 @@ export function ProductsForm({ control, errors, register, setValue }: Readonly<P
             </span>
             {products.length > 0 && (
               <div className="flex h-[48px] items-center font-bold text-blue-gray-400 dark:text-gray-200">
-                {formatToDollar(products[i]?.total ?? 0)}
+                {formatToUSD(products[i]?.total ?? 0)}
               </div>
             )}
           </div>
