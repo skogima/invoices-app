@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
 export function useDarkMode() {
   const defaultValue = document.documentElement.classList.contains("dark");
+
+  const { store } = useLocalStorage("is-dark-mode", String(defaultValue));
 
   const [isDark, setIsDark] = useState(defaultValue);
 
@@ -13,7 +16,7 @@ export function useDarkMode() {
     }
 
     try {
-      localStorage.setItem("is-dark-mode", String(!isDark));
+      store(String(!isDark));
     } catch (error) {
       console.error(error);
     }
