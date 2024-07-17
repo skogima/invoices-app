@@ -1,4 +1,4 @@
-import { Invoice, InvoiceStatus } from "@/types";
+import type { Invoice, InvoiceStatus } from "@/domain";
 
 function getMessageWithStatus(
   invoices: Invoice[],

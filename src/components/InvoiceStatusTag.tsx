@@ -1,4 +1,4 @@
-import { InvoiceStatus } from "@/types";
+import type { InvoiceStatus } from "@/domain";
 
 const statusStyle: Record<InvoiceStatus, string> = {
   paid: "bg-green/5 text-green",

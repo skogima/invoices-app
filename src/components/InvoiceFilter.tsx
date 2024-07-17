@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { InvoiceStatus } from "@/types/Invoice";
+import { InvoiceStatus } from "@/domain/Invoice";
 import { useClickOutside } from "@/hooks";
 import arrowDown from "@/assets/icon-arrow-down.svg";
 import checkIcon from "@/assets/icon-check.svg";
