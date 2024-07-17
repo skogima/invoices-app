@@ -8,7 +8,7 @@ import {
   useWatch,
 } from "react-hook-form";
 import { CreateInvoiceSchema } from "@/const";
-import { formatToUSD, generateUUID } from "@/utils";
+import { formatToUSD, generateUUID, round } from "@/utils";
 import { Button, Input } from ".";
 import deleteIcon from "@/assets/icon-delete.svg";
 
@@ -51,7 +51,7 @@ export function ProductsForm({ control, errors, register, setValue }: Readonly<P
   }
 
   function calcProductTotal(price: number, quantity: number) {
-    return Math.round((price * quantity + Number.EPSILON) * 100) / 100;
+    return round(price * quantity);
   }
 
   function onQuantityChanged(productIndex: number, value: number) {
