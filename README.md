@@ -14,6 +14,8 @@ English |
 
 A frontend project to create and manage invoices, proposed as a [challange by Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl).
 
+[Click here to view the solution in Frontend Mentor](https://www.frontendmentor.io/solutions/invoices-app-with-react-vite-tailwind-vG9vV_6X0c)
+
 ## Tech used
 
 ---

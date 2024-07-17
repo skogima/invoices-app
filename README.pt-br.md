@@ -14,6 +14,8 @@ Português
 
 Um projeto front-end para criação e gerenciamento de faturas, proposto como [desafio pelo Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl).
 
+[Clique aqui para visualizar a solução no Frontend Mentor](https://www.frontendmentor.io/solutions/invoices-app-with-react-vite-tailwind-vG9vV_6X0c)
+
 ## Tecnologias utilizadas
 
 ---
