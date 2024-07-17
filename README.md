@@ -1,30 +1,46 @@
-# React + TypeScript + Vite
+# Invoices App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center" markdown>
+🌏
+English |
+<a href="./README.pt-br.md">Português</a>
+</div>
 
-Currently, two official plugins are available:
+## About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+![Design preview](./public/preview.jpg)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A frontend project to create and manage invoices, proposed as a [challange by Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl).
 
-- Configure the top-level `parserOptions` property like this:
+## Tech used
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+---
+
+- [React](https://react.dev/) - to simplify the creation of consistent and dynamic UI;
+- [React Router](https://reactrouter.com/en/main) - to manage routes in single page applications;
+- [React Hook Form](https://www.react-hook-form.com/) - to simplify form handling and allow a better performance by avoiding unecessary rendering;
+- [TailwindCSS](https://tailwindcss.com/) - to speed up page styling through utility classes while keeping control over style;
+- [Zod](https://zod.dev/) - to simplify form validation logic;
+- LocalStorage - to persist data in a frontend-only app;
+
+## Requirements:
+
+---
+
+- NodeJS v20 or later
+- npm v10 or later
+
+## How to run locally
+
+---
+
+After cloning the repository, the basics setup commands are:
+
+```bash
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+And browse to http://localhost:5173 to see the app.
