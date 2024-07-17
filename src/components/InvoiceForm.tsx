@@ -5,7 +5,9 @@ import { Button, Input, InputDate, Select } from ".";
 import { useInvoices } from "@/context/InvoiceContext";
 import { ProductsForm } from "./ProductsForm";
 import { CreateInvoiceSchema, invoiceSchema } from "@/const";
-import { generateHexId, generateUUID } from "@/utils";
+import { generateUUID } from "@/utils";
+import { createInvoice } from "@/domain/Invoice";
+import { createProduct, type InvoiceStatus } from "@/domain";
 
 const paymentTermOptions = [
   { text: "Net 1 Day", value: 1 },
@@ -68,39 +70,28 @@ export function InvoiceForm({ closeForm }: Readonly<{ closeForm: () => void }>) 
     setValue("paymentTerms", value);
   }
 
-  function calcPaymentDue(createdAt: Date, paymentTerms: number) {
-    const paymentDue = new Date(createdAt);
-    paymentDue.setDate(paymentTerms + createdAt.getDate());
-    return paymentDue;
-  }
-
   function submitForm(formData: CreateInvoiceSchema, isDraft: boolean) {
-    const status = isDraft ? "draft" : "pending";
+    let status: InvoiceStatus = isDraft ? "draft" : "pending";
+
+    if (isEditing) {
+      status = invoiceToEdit.status == "draft" ? "pending" : invoiceToEdit.status;
+    }
+
+    const invoice = createInvoice({
+      clientAddress: formData.clientAddress,
+      clientEmail: formData.clientEmail,
+      clientName: formData.clientName,
+      createdAt: formData.createdAt,
+      description: formData.description,
+      items: formData.items.map(createProduct),
+      paymentTerms: formData.paymentTerms,
+      senderAddress: formData.senderAddress,
+      status,
+    });
 
     dispatch({
       type: isEditing ? "update" : "add",
-      payload: {
-        id: isEditing ? invoiceToEdit.id : generateHexId(),
-        clientAddress: formData.clientAddress,
-        clientEmail: formData.clientEmail,
-        clientName: formData.clientName,
-        createdAt: formData.createdAt,
-        description: formData.description,
-        items: formData.items.map((item) => ({
-          name: item.itemName,
-          price: item.price,
-          quantity: item.quantity,
-          total: item.total,
-        })),
-        paymentDue: calcPaymentDue(
-          new Date(formData.createdAt),
-          formData.paymentTerms,
-        ).toISOString(),
-        paymentTerms: formData.paymentTerms,
-        senderAddress: formData.senderAddress,
-        status: isEditing ? invoiceToEdit.status : status,
-        total: formData.items.reduce((sum, item) => item.total + sum, 0),
-      },
+      payload: invoice,
     });
 
     closeForm();

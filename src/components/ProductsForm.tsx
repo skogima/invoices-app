@@ -8,9 +8,10 @@ import {
   useWatch,
 } from "react-hook-form";
 import { CreateInvoiceSchema } from "@/const";
-import { formatToUSD, generateUUID, round } from "@/utils";
+import { formatToUSD, generateUUID } from "@/utils";
 import { Button, Input } from ".";
 import deleteIcon from "@/assets/icon-delete.svg";
+import { calcProductTotal, createProduct } from "@/domain";
 
 type Props = {
   control: Control<CreateInvoiceSchema>;
@@ -35,11 +36,15 @@ export function ProductsForm({ control, errors, register, setValue }: Readonly<P
     addProduct(false);
   }, []);
 
+  function createFormProduct() {
+    return {
+      ...createProduct({ name: "", price: 0, quantity: 1 }),
+      id: generateUUID(),
+    };
+  }
+
   function addProduct(shouldFocus = true) {
-    appendProduct(
-      { id: generateUUID(), itemName: "", price: 0, quantity: 1, total: 0 },
-      { shouldFocus },
-    );
+    appendProduct(createFormProduct(), { shouldFocus });
   }
 
   function handleRemoveProduct(index: number) {
@@ -48,10 +53,6 @@ export function ProductsForm({ control, errors, register, setValue }: Readonly<P
     }
 
     removeProduct(index);
-  }
-
-  function calcProductTotal(price: number, quantity: number) {
-    return round(price * quantity);
   }
 
   function onQuantityChanged(productIndex: number, value: number) {
@@ -80,18 +81,15 @@ export function ProductsForm({ control, errors, register, setValue }: Readonly<P
           className="mb-4 grid grid-cols-[0.7fr_1fr_1fr_min-content] gap-x-4 text-blue-gray-300 dark:text-gray-200 md:grid-cols-[2fr_0.7fr_1fr_1fr_min-content]"
         >
           <div className="col-span-5 mb-4 space-y-2  sm:col-span-1 sm:mb-0">
-            <label
-              className={i == 0 ? "block" : "block md:hidden"}
-              htmlFor={`products.${i}.itemName`}
-            >
+            <label className={i == 0 ? "block" : "block md:hidden"} htmlFor={`products.${i}.name`}>
               Item Name
             </label>
             <Input
               label=""
               type="text"
-              id={`items.${i}.itemName`}
-              register={register(`items.${i}.itemName`)}
-              error={!!errors.items?.[i]?.itemName}
+              id={`items.${i}.name`}
+              register={register(`items.${i}.name`)}
+              error={!!errors.items?.[i]?.name}
             />
           </div>
           <div className="space-y-2">

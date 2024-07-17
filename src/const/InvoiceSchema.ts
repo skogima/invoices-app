@@ -25,7 +25,7 @@ export const invoiceSchema = zod.object({
     .array(
       zod.object({
         id: zod.string(),
-        itemName: zod.string().min(1),
+        name: zod.string().min(1),
         price: zod.number().refine((value) => value >= 0),
         quantity: zod.number().refine((value) => value > 0),
         total: zod.number(),
