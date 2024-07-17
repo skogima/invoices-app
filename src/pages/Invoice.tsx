@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import arrowLeft from "@/assets/icon-arrow-left.svg";
 import { Button, InvoiceStatusTag, DeleteDialog } from "@/components";
 import { useInvoices } from "@/context/InvoiceContext";
-import type { Invoice } from "@/types";
+import type { Invoice } from "@/domain";
 import { formatToUSD, formatDate } from "@/utils";
 
 export function Invoice() {
@@ -14,7 +14,7 @@ export function Invoice() {
 
   const params = useParams<{ id: string }>();
 
-  const invoice = invoices.find((invoice) => invoice.id == params.id);
+  const invoice = invoices.find((invoice) => invoice.id == params.id) as Invoice;
 
   function deleteInvoice(_invoice: Invoice) {
     dispatch({

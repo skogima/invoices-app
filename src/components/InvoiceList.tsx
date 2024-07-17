@@ -1,4 +1,4 @@
-import { Invoice } from "@/types";
+import type { Invoice } from "@/domain";
 import { InvoiceListItem } from "./InvoiceListItem";
 import emptyIllustration from "@/assets/illustration-empty.svg";
 

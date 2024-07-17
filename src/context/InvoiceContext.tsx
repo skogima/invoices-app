@@ -9,7 +9,7 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { Invoice, InvoiceStatus } from "@/types";
+import type { Invoice, InvoiceStatus } from "@/domain";
 import { useLocalStorage } from "@/hooks";
 import fakeInvoices from "@/const/data.json";
 import { invoicesReducer, InvoiceAction } from "./invoiceReducer";

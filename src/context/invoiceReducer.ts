@@ -1,4 +1,4 @@
-import type { Invoice } from "@/types";
+import type { Invoice } from "@/domain";
 
 export type InvoiceAction =
   | { type: "set"; payload: Invoice[] }

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Invoice } from "@/types";
+import type { Invoice } from "@/domain";
 import { InvoiceStatusTag } from "./InvoiceStatusTag";
 import { formatToUSD, formatDate } from "@/utils";
 import arrowRight from "@/assets/icon-arrow-right.svg";
