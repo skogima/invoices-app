@@ -9,8 +9,7 @@ import {
 } from "react-hook-form";
 import { CreateInvoiceSchema } from "@/const";
 import { formatToUSD, generateUUID } from "@/utils";
-import { Button, Input } from ".";
-import deleteIcon from "@/assets/icon-delete.svg";
+import { Button, DeleteButton, Input } from ".";
 import { calcProductTotal, createProduct } from "@/domain";
 
 type Props = {
@@ -137,11 +136,9 @@ export function ProductsForm({ control, errors, register, setValue }: Readonly<P
             )}
           </div>
           <div className="group flex h-[48px] w-[24px] items-center self-end">
-            <button
+            <DeleteButton
               type="button"
-              className="h-[24px] w-[24px] rounded-full bg-blue-gray-400 p-1 hover:bg-red disabled:pointer-events-none disabled:opacity-50"
-              style={{ mask: `url(${deleteIcon}) center no-repeat` }}
-              aria-label="delete"
+              className="h-[24px] w-[24px] rounded-full fill-blue-gray-400 p-1 hover:fill-red disabled:pointer-events-none disabled:opacity-50"
               disabled={productFields.length == 1}
               onClick={() => handleRemoveProduct(i)}
             />
